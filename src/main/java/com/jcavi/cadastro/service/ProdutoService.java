@@ -24,8 +24,10 @@ public class ProdutoService {
 
     public void atualizarProduto(Produto produto, Integer id) {
         Optional<Produto> produtoRetornadoDoBanco = produtoRepository.findById(id);
-        produtoRetornadoDoBanco.get().setId(id);
-        produtoRepository.save(produto);
+        if (produtoRetornadoDoBanco.isPresent()) {
+            produto.setId(id);
+            produtoRepository.save(produto);
+        }
     }
 
     public void deletarProduto(Integer id) {

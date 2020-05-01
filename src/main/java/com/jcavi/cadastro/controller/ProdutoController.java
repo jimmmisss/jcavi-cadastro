@@ -24,14 +24,14 @@ public class ProdutoController {
     @PostMapping("/produto")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public void salvarProdutos(Produto produto) {
+    public void salvarProdutos(@RequestBody Produto produto) {
         produtoService.salvarProduto(produto);
     }
 
     @PutMapping("/alterar-produto/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void alterarProduto(Produto produto, @PathVariable Integer id) {
+    public void alterarProduto(@RequestBody Produto produto, @PathVariable Integer id) {
         produtoService.atualizarProduto(produto, id);
     }
 

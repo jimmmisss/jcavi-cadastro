@@ -12,7 +12,7 @@ public class Produto {
     private Integer id;
     private String nome;
     private String descricao;
-    private LocalDateTime dataChegada;
+    private LocalDateTime dataChegada = LocalDateTime.now();
     private String fabricante;
 
     public Integer getId() {
