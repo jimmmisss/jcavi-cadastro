@@ -1,21 +1,13 @@
-package com.jcavi.cadastro.entity;
+package com.jcavi.cadastro.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "jcavi_produto")
-public class Produto implements Serializable {
+public class ProdutoDto {
 
-    private static final long serialVersionUID = -613979741419635077L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
-    private LocalDateTime dataChegada = LocalDateTime.now();
+    private LocalDateTime dataChegada;
     private String fabricante;
 
     public Long getId() {
