@@ -1,5 +1,7 @@
 package com.jcavi.cadastro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -16,7 +18,11 @@ public class Produto implements Serializable {
     private String nome;
     private String descricao;
     private LocalDateTime dataChegada = LocalDateTime.now();
-    private String fabricante;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_fabricante")
+    private Fabricante fabricante;
 
     public Long getId() {
         return id;
@@ -50,11 +56,11 @@ public class Produto implements Serializable {
         this.dataChegada = dataChegada;
     }
 
-    public String getFabricante() {
+    public Fabricante getFabricante() {
         return fabricante;
     }
 
-    public void setFabricante(String fabricante) {
+    public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
 }

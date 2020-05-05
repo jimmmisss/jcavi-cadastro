@@ -8,7 +8,7 @@ public class ProdutoDto {
     private String nome;
     private String descricao;
     private LocalDateTime dataChegada;
-    private String fabricante;
+    private FabricanteDto fabricante;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class ProdutoDto {
         this.dataChegada = dataChegada;
     }
 
-    public String getFabricante() {
+    public FabricanteDto getFabricante() {
         return fabricante;
     }
 
-    public void setFabricante(String fabricante) {
+    public void setFabricante(FabricanteDto fabricante) {
         this.fabricante = fabricante;
     }
 }

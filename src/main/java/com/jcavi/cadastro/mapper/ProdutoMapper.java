@@ -3,6 +3,7 @@ package com.jcavi.cadastro.mapper;
 import com.jcavi.cadastro.dto.ProdutoDto;
 import com.jcavi.cadastro.entity.Produto;
 
+@Deprecated
 public class ProdutoMapper {
 
     private ProdutoMapper() {
@@ -14,7 +15,7 @@ public class ProdutoMapper {
         produto.setId(produtoDto.getId());
         produto.setNome(produtoDto.getNome());
         produto.setDescricao(produtoDto.getDescricao());
-        produto.setFabricante(produtoDto.getFabricante());
+//        produto.setFabricante(produtoDto.getFabricante());
         produto.setDataChegada(produtoDto.getDataChegada());
         return produto;
     }
@@ -24,7 +25,7 @@ public class ProdutoMapper {
         produtoDto.setId(produto.getId());
         produtoDto.setNome(produto.getNome());
         produtoDto.setDescricao(produto.getDescricao());
-        produtoDto.setFabricante(produto.getFabricante());
+//        produtoDto.setFabricante(produto.getFabricante());
         produtoDto.setDataChegada(produto.getDataChegada());
         return produtoDto;
     }
