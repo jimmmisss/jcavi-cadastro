@@ -1,52 +1,24 @@
 package com.jcavi.cadastro.dto;
 
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-public class ProdutoDto {
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+public class ProdutoDto implements Serializable {
+
+    private static final long serialVersionUID = -8848293829242239180L;
 
     private Long id;
     private String nome;
     private String descricao;
     private LocalDateTime dataChegada;
     private FabricanteDto fabricante;
+    private List<CategoriaDto> categoria = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public LocalDateTime getDataChegada() {
-        return dataChegada;
-    }
-
-    public void setDataChegada(LocalDateTime dataChegada) {
-        this.dataChegada = dataChegada;
-    }
-
-    public FabricanteDto getFabricante() {
-        return fabricante;
-    }
-
-    public void setFabricante(FabricanteDto fabricante) {
-        this.fabricante = fabricante;
-    }
 }
