@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "jcavi_fabricante")
-public class Fabricante implements Serializable {
+@Table(name = "jcavi_categoria")
+public class Categoria implements Serializable {
 
-    private static final long serialVersionUID = -3749000944064034091L;
+    private static final long serialVersionUID = 3488703549102717354L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +18,16 @@ public class Fabricante implements Serializable {
     private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "fabricante")
-    private List<Produto> produtos = new ArrayList<>();
+    @ManyToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    private List<Produto> produto;
 
-    public Fabricante() {
+    public Categoria() {
     }
 
-    public Fabricante(Long id, String nome, List<Produto> produtos) {
+    public Categoria(Long id, String nome, List<Produto> produto) {
         this.id = id;
         this.nome = nome;
-        this.produtos = produtos;
+        this.produto = produto;
     }
 
     public Long getId() {
@@ -47,11 +46,11 @@ public class Fabricante implements Serializable {
         this.nome = nome;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<Produto> getProduto() {
+        return produto;
     }
 
-    public void setProdutos(List<Produto> produto) {
-        this.produtos = produto;
+    public void setProduto(List<Produto> produto) {
+        this.produto = produto;
     }
 }

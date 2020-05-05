@@ -3,7 +3,6 @@ package com.jcavi.cadastro.service;
 import com.jcavi.cadastro.dto.ProdutoDto;
 import com.jcavi.cadastro.entity.Produto;
 import com.jcavi.cadastro.mapper.Mappable;
-import com.jcavi.cadastro.mapper.ProdutoMapper;
 import com.jcavi.cadastro.repository.ProdutoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

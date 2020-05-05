@@ -16,7 +16,6 @@ public class ProdutoMapper {
         produto.setNome(produtoDto.getNome());
         produto.setDescricao(produtoDto.getDescricao());
 //        produto.setFabricante(produtoDto.getFabricante());
-        produto.setDataChegada(produtoDto.getDataChegada());
         return produto;
     }
 
@@ -26,7 +25,6 @@ public class ProdutoMapper {
         produtoDto.setNome(produto.getNome());
         produtoDto.setDescricao(produto.getDescricao());
 //        produtoDto.setFabricante(produto.getFabricante());
-        produtoDto.setDataChegada(produto.getDataChegada());
         return produtoDto;
     }
 
