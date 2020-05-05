@@ -2,8 +2,10 @@ package com.jcavi.cadastro.service;
 
 import com.jcavi.cadastro.dto.ProdutoDto;
 import com.jcavi.cadastro.entity.Produto;
+import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.mapper.ProdutoMapper;
 import com.jcavi.cadastro.repository.ProdutoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +14,24 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ProdutoService {
+public class ProdutoService implements Mappable {
+
+    private final ProdutoRepository produtoRepository;
+    private final ModelMapper mapper;
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    public ProdutoService(ProdutoRepository produtoRepository, ModelMapper mapper) {
+        this.produtoRepository = produtoRepository;
+        this.mapper = mapper;
+    }
 
     public List<ProdutoDto> listar() {
         List<Produto> produtos = produtoRepository.findAll();
-        return produtos.stream().map(ProdutoMapper::toDto).collect(Collectors.toList());
+        return produtos.stream().map(m -> map(m, ProdutoDto.class)).collect(Collectors.toList());
     }
 
     public void salvar(ProdutoDto produtoDto) {
-        Produto produto = ProdutoMapper.toEntity(produtoDto);
+        Produto produto = map(produtoDto, Produto.class);
         produtoRepository.save(produto);
     }
 
@@ -31,13 +39,18 @@ public class ProdutoService {
         Optional<Produto> produto = produtoRepository.findById(id);
         if (produto.isPresent()) {
             produtoDto.setId(id);
-            Produto produtoMapper = ProdutoMapper.toEntity(produtoDto);
+            Produto produtoMapper = map(produtoDto, Produto.class);
             produtoRepository.save(produtoMapper);
         }
     }
 
     public void deletar(Long id) {
         produtoRepository.deleteById(id);
+    }
+
+    @Override
+    public ModelMapper mapper() {
+        return this.mapper;
     }
 
 }
