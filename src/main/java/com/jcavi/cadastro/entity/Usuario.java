@@ -42,7 +42,6 @@ public class Usuario implements Serializable {
     private String profissao;
     private Double salario;
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "usuario_funcao",
             joinColumns = @JoinColumn(name = "usuario"),

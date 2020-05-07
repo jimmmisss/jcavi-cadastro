@@ -26,7 +26,6 @@ public class Funcao implements Serializable {
     private Long id;
     private String nome;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "funcoes", cascade = CascadeType.ALL)
     private List<Usuario> usuarios = new ArrayList<>();
 

@@ -19,7 +19,7 @@ public class FuncaoController {
         this.funcaoService = funcaoService;
     }
 
-    @GetMapping("/funcaos")
+    @GetMapping("/funcoes")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<FuncaoDto> listar() {

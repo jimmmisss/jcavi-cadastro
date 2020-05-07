@@ -26,7 +26,6 @@ public class Categoria implements Serializable {
     private Long id;
     private String nome;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "categorias", cascade = CascadeType.ALL)
     private List<Produto> produto = new ArrayList<>();
 

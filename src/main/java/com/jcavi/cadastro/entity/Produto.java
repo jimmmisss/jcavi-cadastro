@@ -30,12 +30,10 @@ public class Produto implements Serializable {
     private String nome;
     private String descricao;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fabricante")
     private Fabricante fabricante;
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "produto_categoria",
             joinColumns = @JoinColumn(name = "produto"),

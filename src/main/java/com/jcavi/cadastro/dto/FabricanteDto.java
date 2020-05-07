@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,8 @@ public class FabricanteDto implements Serializable {
 
     private Long id;
     private String nome;
+
+    @JsonIgnore
     private List<ProdutoDto> produto;
 
 }

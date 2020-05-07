@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,6 @@ public class UsuarioDto implements Serializable {
     private String senha;
     private String profissao;
     private Double salario;
+
     private List<FuncaoDto> funcoes = new ArrayList<>();
 }
