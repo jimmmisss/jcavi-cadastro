@@ -27,6 +27,6 @@ public class Categoria implements Serializable {
     private String nome;
 
     @ManyToMany(mappedBy = "categorias", cascade = CascadeType.ALL)
-    private List<Produto> produto = new ArrayList<>();
+    private List<Produto> produtos = new ArrayList<>();
 
 }

@@ -35,7 +35,7 @@ public class Produto implements Serializable {
     private Fabricante fabricante;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "produto_categoria",
+    @JoinTable(name = "jcavi_produto_categoria",
             joinColumns = @JoinColumn(name = "produto"),
             inverseJoinColumns = @JoinColumn(name = "categoria")
     )
