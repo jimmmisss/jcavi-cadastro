@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "jcavi_funcao")
-public class Funcao implements Serializable {
+public class Funcao implements Serializable, GrantedAuthority {
 
     private static final long serialVersionUID = 1647035985255564511L;
 
@@ -28,4 +29,8 @@ public class Funcao implements Serializable {
     @ManyToMany(mappedBy = "funcoes", cascade = CascadeType.ALL)
     private List<Usuario> usuarios = new ArrayList<>();
 
+    @Override
+    public String getAuthority() {
+        return nome;
+    }
 }
