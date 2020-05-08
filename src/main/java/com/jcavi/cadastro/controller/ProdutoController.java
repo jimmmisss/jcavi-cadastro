@@ -4,6 +4,7 @@ import com.jcavi.cadastro.dto.ProdutoDto;
 import com.jcavi.cadastro.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/produtos")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -22,6 +24,7 @@ public class ProdutoController {
         return produtoService.listar();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/produto")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,6 +32,7 @@ public class ProdutoController {
         produtoService.salvar(produtoDto);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/alterar-produto/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -36,6 +40,7 @@ public class ProdutoController {
         produtoService.atualizar(produtoDto, id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/deletar-produto/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)

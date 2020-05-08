@@ -3,6 +3,7 @@ package com.jcavi.cadastro.service;
 import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.mapper.Mappable;
+import com.jcavi.cadastro.security.UserSS;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,14 +29,13 @@ public class UserDetailsServiceImpl implements UserDetailsService, Mappable {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        UsuarioDto usuarioDto = usuarioService.buscaPorEmail(email);
-        Usuario usuario = map(usuarioDto, Usuario.class);
+        Usuario usuario = usuarioService.buscaPorEmail(email);
 
-        if (Objects.isNull(usuarioDto)) {
+        if (Objects.isNull(usuario)) {
             throw new UsernameNotFoundException("Usuário não existe");
         }
 
-        return new User(usuario.getUsername(), usuario.getPassword(), true, true, true, true, usuario.getAuthorities());
+        return new UserSS(usuario.getId(), usuario.getEmail(), usuario.getSenha(), usuario.getFuncoes());
 
     }
 

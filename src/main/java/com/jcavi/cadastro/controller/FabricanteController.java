@@ -4,6 +4,7 @@ import com.jcavi.cadastro.dto.FabricanteDto;
 import com.jcavi.cadastro.service.FabricanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class FabricanteController {
         this.fabricanteService = fabricanteService;
     }
 
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/fabricantes")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -26,6 +28,7 @@ public class FabricanteController {
         return fabricanteService.listar();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/fabricante")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,6 +36,7 @@ public class FabricanteController {
         fabricanteService.salvar(fabricanteDto);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/fabricante/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -40,6 +44,7 @@ public class FabricanteController {
         fabricanteService.alterar(fabricanteDto, id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/fabricante/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)

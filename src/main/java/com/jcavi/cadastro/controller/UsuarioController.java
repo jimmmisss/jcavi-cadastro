@@ -4,6 +4,7 @@ import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/usuarios")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -26,6 +28,7 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/usuario")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,6 +36,7 @@ public class UsuarioController {
         usuarioService.salvar(usuarioDto);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/usuario/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -40,6 +44,7 @@ public class UsuarioController {
         usuarioService.alterar(usuarioDto, id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/usuario/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)

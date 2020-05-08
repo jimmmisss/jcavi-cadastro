@@ -29,9 +29,8 @@ public class UsuarioService implements Mappable {
         return usuarios.stream().map(m -> map(m, UsuarioDto.class)).collect(Collectors.toList());
     }
 
-    public UsuarioDto buscaPorEmail(String email) {
-        Usuario usuario = usuarioRepository.findByEmail(email);
-        return map(usuario, UsuarioDto.class);
+    public Usuario buscaPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 
     public void salvar(UsuarioDto usuarioDto) {
