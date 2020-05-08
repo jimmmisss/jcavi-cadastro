@@ -1,13 +1,9 @@
 package com.jcavi.cadastro.service;
 
-import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.entity.Usuario;
-import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.security.UserSS;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,15 +11,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Objects;
 
 @Configuration
-public class UserDetailsServiceImpl implements UserDetailsService, Mappable {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UsuarioService usuarioService;
-    private final ModelMapper mapper;
 
     @Autowired
-    public UserDetailsServiceImpl(UsuarioService usuarioService, ModelMapper mapper) {
+    public UserDetailsServiceImpl(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
-        this.mapper = mapper;
     }
 
     @Override
@@ -39,8 +33,4 @@ public class UserDetailsServiceImpl implements UserDetailsService, Mappable {
 
     }
 
-    @Override
-    public ModelMapper mapper() {
-        return mapper;
-    }
 }

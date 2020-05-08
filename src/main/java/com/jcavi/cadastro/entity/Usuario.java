@@ -35,7 +35,6 @@ public class Usuario implements Serializable {
     @Email(message = "Email precisa ser válido")
     private String email;
 
-    @Size(min = 6, max = 12, message = "Senha deve ter no mínimo 6 caracteres e no máxmo 12")
     @NotBlank(message = "Senha é obrigatório")
     private String senha;
     private String profissao;
