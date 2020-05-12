@@ -1,9 +1,8 @@
 package com.jcavi.cadastro.controller;
 
 import com.jcavi.cadastro.dto.CategoriaDto;
-import com.jcavi.cadastro.dto.UsuarioDto;
-import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.service.CategoriaService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +21,7 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
+    @ApiOperation(value = "Lista uma categoria")
     @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/categoria/{id}")
     @ResponseBody
@@ -30,6 +30,7 @@ public class CategoriaController {
         return categoriaService.buscarPorId(id);
     }
 
+    @ApiOperation(value = "Lista todas categoria")
     @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/categorias")
     @ResponseBody
@@ -38,6 +39,7 @@ public class CategoriaController {
         return categoriaService.listar();
     }
 
+    @ApiOperation(value = "Salvar categoria")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/categoria")
     @ResponseBody
@@ -46,6 +48,7 @@ public class CategoriaController {
         categoriaService.salvar(categoriaDto);
     }
 
+    @ApiOperation(value = "Alterar categoria")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/categoria/{id}")
     @ResponseBody
@@ -54,6 +57,7 @@ public class CategoriaController {
         categoriaService.alterar(categoriaDto, id);
     }
 
+    @ApiOperation(value = "Deletar categoria")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/categoria/{id}")
     @ResponseBody

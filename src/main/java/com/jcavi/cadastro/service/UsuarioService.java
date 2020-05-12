@@ -1,9 +1,12 @@
 package com.jcavi.cadastro.service;
 
+import com.jcavi.cadastro.dto.CategoriaDto;
 import com.jcavi.cadastro.dto.UsuarioDto;
+import com.jcavi.cadastro.entity.Categoria;
 import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.repository.UsuarioRepository;
+import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,12 @@ public class UsuarioService implements Mappable {
     public UsuarioService(UsuarioRepository usuarioRepository, ModelMapper mapper) {
         this.usuarioRepository = usuarioRepository;
         this.mapper = mapper;
+    }
+
+    public UsuarioDto buscarPorId(Long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Usuario user = usuario.orElseThrow(() -> new ObjectNotFoundException("Nenhuma usuario encontrada: " + id));
+        return map(user, UsuarioDto.class);
     }
 
     public List<UsuarioDto> listar() {

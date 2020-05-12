@@ -1,9 +1,12 @@
 package com.jcavi.cadastro.service;
 
+import com.jcavi.cadastro.dto.CategoriaDto;
 import com.jcavi.cadastro.dto.ProdutoDto;
+import com.jcavi.cadastro.entity.Categoria;
 import com.jcavi.cadastro.entity.Produto;
 import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.repository.ProdutoRepository;
+import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,12 @@ public class ProdutoService implements Mappable {
     public ProdutoService(ProdutoRepository produtoRepository, ModelMapper mapper) {
         this.produtoRepository = produtoRepository;
         this.mapper = mapper;
+    }
+
+    public ProdutoDto buscarPorId(Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+        Produto prod = produto.orElseThrow(() -> new ObjectNotFoundException("Nenhuma categoria encontrada: " + id));
+        return map(prod, ProdutoDto.class);
     }
 
     public List<ProdutoDto> listar() {

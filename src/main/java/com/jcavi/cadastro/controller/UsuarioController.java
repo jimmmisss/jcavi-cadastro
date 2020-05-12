@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.controller;
 
+import com.jcavi.cadastro.dto.CategoriaDto;
 import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,14 @@ public class UsuarioController {
     @Autowired
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/usuario/{id}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto buscarPorId(@PathVariable Long id) {
+        return usuarioService.buscarPorId(id);
     }
 
     @PreAuthorize("hasAnyRole('USER')")

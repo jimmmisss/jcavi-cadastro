@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.controller;
 
+import com.jcavi.cadastro.dto.CategoriaDto;
 import com.jcavi.cadastro.dto.ProdutoDto;
 import com.jcavi.cadastro.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,20 @@ import java.util.List;
 @RequestMapping("/v1")
 public class ProdutoController {
 
+    private final ProdutoService produtoService;
+
     @Autowired
-    private ProdutoService produtoService;
+    public ProdutoController(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/produto/{id}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public ProdutoDto buscarPorId(@PathVariable Long id) {
+        return produtoService.buscarPorId(id);
+    }
 
     @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/produtos")

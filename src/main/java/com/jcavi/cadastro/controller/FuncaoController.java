@@ -21,6 +21,14 @@ public class FuncaoController {
     }
 
     @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/funcao/{id}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public FuncaoDto buscarPorId(@PathVariable Long id) {
+        return funcaoService.buscarPorId(id);
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/funcoes")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)

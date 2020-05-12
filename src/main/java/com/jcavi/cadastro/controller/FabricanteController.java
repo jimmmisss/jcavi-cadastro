@@ -21,6 +21,14 @@ public class FabricanteController {
     }
 
     @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/fabricante/{id}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public FabricanteDto buscarPorId(@PathVariable Long id) {
+        return fabricanteService.buscarPorId(id);
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/fabricantes")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
