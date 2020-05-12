@@ -21,6 +21,7 @@ public class ProdutoDto implements Serializable {
     private Long id;
     private String nome;
     private String descricao;
+    private Double preco;
     private LocalDateTime dataChegada;
     private FabricanteDto fabricante;
     private List<CategoriaDto> categorias = new ArrayList<>();

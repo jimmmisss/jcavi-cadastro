@@ -29,6 +29,7 @@ public class Produto implements Serializable {
     @NotBlank(message = "Campo nome é obrigatório")
     private String nome;
     private String descricao;
+    private Double preco;
 
     @ManyToOne
     @JoinColumn(name = "fabricante")
