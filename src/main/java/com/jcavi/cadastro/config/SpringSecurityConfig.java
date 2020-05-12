@@ -36,10 +36,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String[] PUBLICS_MATCHERS = {
             "/h2-console/**",
             "/v2/api-docs/**",
-            "swagger-ui.html",
-            "swagger-ui/**",
-            "webjars/springfox-swagger-ui/**",
-            "swagger-resources/**"
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/webjars/springfox-swagger-ui/**",
+            "/swagger-resources/**"
     };
 
     public static final String[] PUBLICS_ROUTES_GET = {

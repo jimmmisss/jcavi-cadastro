@@ -32,6 +32,7 @@ public class SwaggerConfig {
     }
 
     private ApiInfo metaInfo() {
+
         ApiInfo apiInfo = new ApiInfo(
                 "Cadastro - API REST",
                 "Cadastro de produtos gerais",
@@ -43,6 +44,7 @@ public class SwaggerConfig {
                 "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
 
         );
+
         return apiInfo;
     }
 
