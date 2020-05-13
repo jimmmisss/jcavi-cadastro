@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.EmbeddedId;
@@ -14,6 +15,7 @@ public class ItemPedido implements Serializable {
 
     private static final long serialVersionUID = -569503989685757343L;
 
+    @JsonIgnore
     @EmbeddedId
     @EqualsAndHashCode.Include()
     private ItemPedidoPK id = new ItemPedidoPK();
@@ -33,6 +35,7 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
@@ -79,5 +82,9 @@ public class ItemPedido implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Double getSubTotal() {
+        return (preco - desconto) * quantidade;
     }
 }

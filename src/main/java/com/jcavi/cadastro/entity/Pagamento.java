@@ -1,5 +1,7 @@
 package com.jcavi.cadastro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.jcavi.cadastro.entity.enums.EstadoPagamento;
 import lombok.EqualsAndHashCode;
 
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @Table(name = "jcavi_pagamento")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
 
     private static final long serialVersionUID = -8556272870602881632L;
@@ -19,6 +22,7 @@ public abstract class Pagamento implements Serializable {
     private Long id;
     private Integer estado;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "id_pedido")
     @MapsId

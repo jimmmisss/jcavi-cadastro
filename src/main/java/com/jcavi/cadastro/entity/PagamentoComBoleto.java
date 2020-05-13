@@ -1,6 +1,7 @@
 package com.jcavi.cadastro.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonTypeName("pagamentoBoleto")
 public class PagamentoComBoleto extends Pagamento {
 
     private static final long serialVersionUID = 2453310495668094746L;
