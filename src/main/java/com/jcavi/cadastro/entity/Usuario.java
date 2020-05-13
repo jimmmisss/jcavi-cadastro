@@ -41,7 +41,7 @@ public class Usuario implements Serializable {
     private Double salario;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "usuario_funcao",
+    @JoinTable(name = "jcavi_usuario_funcao",
             joinColumns = @JoinColumn(name = "usuario"),
             inverseJoinColumns = @JoinColumn(name = "funcao")
     )

@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "jcavi_pedido")
 @Getter
 @Setter
 @NoArgsConstructor

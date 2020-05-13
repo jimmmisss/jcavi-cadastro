@@ -7,8 +7,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "jcavi_pagamento")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
 
     private static final long serialVersionUID = -8556272870602881632L;
@@ -57,3 +58,4 @@ public abstract class Pagamento implements Serializable {
         this.pedido = pedido;
     }
 }
+
