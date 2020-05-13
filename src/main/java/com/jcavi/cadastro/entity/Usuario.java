@@ -47,4 +47,24 @@ public class Usuario implements Serializable {
     )
     private List<Funcao> funcoes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedido = new ArrayList<>();
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
