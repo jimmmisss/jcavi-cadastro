@@ -1,7 +1,6 @@
 package com.jcavi.cadastro.service;
 
 import com.jcavi.cadastro.entity.Pagamento;
-import com.jcavi.cadastro.entity.Pedido;
 import com.jcavi.cadastro.repository.PagamentoRepository;
 import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

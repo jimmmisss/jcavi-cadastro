@@ -29,7 +29,7 @@ public class ProdutoService implements Mappable {
 
     public ProdutoDto buscarPorId(Long id) {
         Optional<Produto> produto = produtoRepository.findById(id);
-        Produto prod = produto.orElseThrow(() -> new ObjectNotFoundException("Nenhuma categoria encontrada: " + id));
+        Produto prod = produto.orElseThrow(() -> new ObjectNotFoundException("Nenhum produto encontrado: " + id));
         return map(prod, ProdutoDto.class);
     }
 

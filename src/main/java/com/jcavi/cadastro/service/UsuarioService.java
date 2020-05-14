@@ -29,7 +29,7 @@ public class UsuarioService implements Mappable {
 
     public UsuarioDto buscarPorId(Long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
-        Usuario user = usuario.orElseThrow(() -> new ObjectNotFoundException("Nenhuma usuario encontrada: " + id));
+        Usuario user = usuario.orElseThrow(() -> new ObjectNotFoundException("Nenhum usuario encontrada: " + id));
         return map(user, UsuarioDto.class);
     }
 
