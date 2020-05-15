@@ -10,6 +10,7 @@ import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
@@ -41,8 +42,8 @@ public class PedidoService implements Mappable {
         return pedido.orElseThrow(() -> new ObjectNotFoundException("Pedido não encontrado: " + id));
     }
 
+    @Transactional
     public Pedido salvar(Pedido pedido) {
-
         pedido.setInstante(new Date());
         UsuarioDto usuarioDto = usuarioService.buscarPorId(pedido.getUsuario().getId());
         pedido.setUsuario(map(usuarioDto, Usuario.class));
@@ -58,6 +59,7 @@ public class PedidoService implements Mappable {
             item.setDesconto(0.0);
             ProdutoDto produtoDto = produtoService.buscarPorId(item.getProduto().getId());
             item.setProduto(map(produtoDto, Produto.class));
+            item.setPreco(produtoService.buscarPreco(item.getProduto().getId()));
             item.setPedido(pedido);
         }
         itemPedidoService.salvarTodos(pedido.getItens());

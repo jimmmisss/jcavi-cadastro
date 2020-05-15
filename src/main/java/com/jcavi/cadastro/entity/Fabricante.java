@@ -26,6 +26,7 @@ public class Fabricante implements Serializable {
     private Long id;
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fabricante")
     private List<Produto> produtos = new ArrayList<>();
 

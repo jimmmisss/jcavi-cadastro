@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Funcao implements Serializable, GrantedAuthority {
     private Long id;
     private String nome;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "funcoes", cascade = CascadeType.ALL)
     private List<Usuario> usuarios = new ArrayList<>();
 
