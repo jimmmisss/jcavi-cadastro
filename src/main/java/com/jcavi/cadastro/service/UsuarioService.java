@@ -8,6 +8,7 @@ import com.jcavi.cadastro.repository.UsuarioRepository;
 import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +18,14 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioService implements Mappable {
 
+    private final BCryptPasswordEncoder encoder;
     private final UsuarioRepository usuarioRepository;
     private final EnderecoService enderecoService;
     private final ModelMapper mapper;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper mapper) {
+    public UsuarioService(BCryptPasswordEncoder encoder, UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper mapper) {
+        this.encoder = encoder;
         this.usuarioRepository = usuarioRepository;
         this.enderecoService = enderecoService;
         this.mapper = mapper;
@@ -44,9 +47,12 @@ public class UsuarioService implements Mappable {
     }
 
     public void salvar(UsuarioDto usuarioDto) {
+        String senhaCriptografada = encoder.encode(usuarioDto.getSenha());
+        usuarioDto.setSenha(senhaCriptografada);
         Usuario usuario = map(usuarioDto, Usuario.class);
+        usuario.setEnderecos(null);
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
-        List<EnderecoDto> enderecos = map(usuarioSalvo.getEnderecos(), EnderecoDto.class);
+        List<EnderecoDto> enderecos = map(usuarioDto.getEnderecos(), EnderecoDto.class);
         enderecoService.salvar(enderecos, map(usuarioSalvo, UsuarioDto.class));
     }
 

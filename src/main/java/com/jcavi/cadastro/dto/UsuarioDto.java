@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.dto;
 
+import com.jcavi.cadastro.entity.Endereco;
 import lombok.*;
 
 import java.io.Serializable;
