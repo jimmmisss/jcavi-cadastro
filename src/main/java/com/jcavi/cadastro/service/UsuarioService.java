@@ -52,8 +52,8 @@ public class UsuarioService implements Mappable {
         Usuario usuario = map(usuarioDto, Usuario.class);
         usuario.setEnderecos(null);
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
-        List<EnderecoDto> enderecos = map(usuarioDto.getEnderecos(), EnderecoDto.class);
-        enderecoService.salvar(enderecos, map(usuarioSalvo, UsuarioDto.class));
+        UsuarioDto usuarioMapeado = map(usuarioSalvo, UsuarioDto.class);
+        enderecoService.salvar(usuarioDto.getEnderecos(), usuarioMapeado);
     }
 
     public void alterar(UsuarioDto usuarioDto, Long id) {

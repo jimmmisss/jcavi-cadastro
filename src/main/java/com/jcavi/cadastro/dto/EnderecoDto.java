@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class EnderecoDto implements Serializable {
     private String cidade;
     private String uf;
     private String cep;
+
+    @JsonIgnore
     private UsuarioDto usuario;
 
 }

@@ -25,9 +25,10 @@ public class EnderecoService implements Mappable {
     }
 
     public void salvar(List<EnderecoDto> enderecoDto, UsuarioDto usuarioDto) {
-        for (EnderecoDto e: enderecoDto) {
+        for (EnderecoDto e : enderecoDto) {
             Endereco endereco = map(e, Endereco.class);
-            endereco.setUsuario(map(usuarioDto, Usuario.class));
+            Usuario usuario = map(usuarioDto, Usuario.class);
+            endereco.setUsuario(usuario);
             enderecoRepository.save(endereco);
         }
     }
