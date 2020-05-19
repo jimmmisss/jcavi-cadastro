@@ -20,6 +20,7 @@ public class UsuarioDto implements Serializable {
     private String senha;
     private String profissao;
     private Double salario;
+    private List<EnderecoDto> enderecos = new ArrayList<>();
     private List<FuncaoDto> funcoes = new ArrayList<>();
 
 }

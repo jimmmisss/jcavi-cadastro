@@ -1,8 +1,6 @@
 package com.jcavi.cadastro.service;
 
-import com.jcavi.cadastro.dto.CategoriaDto;
 import com.jcavi.cadastro.dto.UsuarioDto;
-import com.jcavi.cadastro.entity.Categoria;
 import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.repository.UsuarioRepository;
@@ -19,11 +17,13 @@ import java.util.stream.Collectors;
 public class UsuarioService implements Mappable {
 
     private final UsuarioRepository usuarioRepository;
+    private final EnderecoService enderecoService;
     private final ModelMapper mapper;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, ModelMapper mapper) {
+    public UsuarioService(UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper mapper) {
         this.usuarioRepository = usuarioRepository;
+        this.enderecoService = enderecoService;
         this.mapper = mapper;
     }
 
@@ -45,6 +45,7 @@ public class UsuarioService implements Mappable {
     public void salvar(UsuarioDto usuarioDto) {
         Usuario usuario = map(usuarioDto, Usuario.class);
         usuarioRepository.save(usuario);
+        enderecoService.salvar(usuarioDto.getEnderecos());
     }
 
     public void alterar(UsuarioDto usuarioDto, Long id) {

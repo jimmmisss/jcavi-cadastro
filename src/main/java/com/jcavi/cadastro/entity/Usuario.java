@@ -41,6 +41,9 @@ public class Usuario implements Serializable {
     private String profissao;
     private Double salario;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "jcavi_usuario_funcao",
             joinColumns = @JoinColumn(name = "usuario"),
