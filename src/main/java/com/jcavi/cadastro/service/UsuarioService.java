@@ -1,5 +1,6 @@
 package com.jcavi.cadastro.service;
 
+import com.jcavi.cadastro.dto.EnderecoDto;
 import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.mapper.Mappable;
@@ -44,8 +45,9 @@ public class UsuarioService implements Mappable {
 
     public void salvar(UsuarioDto usuarioDto) {
         Usuario usuario = map(usuarioDto, Usuario.class);
-        usuarioRepository.save(usuario);
-        enderecoService.salvar(usuarioDto.getEnderecos());
+        Usuario usuarioSalvo = usuarioRepository.save(usuario);
+        List<EnderecoDto> enderecos = map(usuarioSalvo.getEnderecos(), EnderecoDto.class);
+        enderecoService.salvar(enderecos, map(usuarioSalvo, UsuarioDto.class));
     }
 
     public void alterar(UsuarioDto usuarioDto, Long id) {

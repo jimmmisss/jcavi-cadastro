@@ -1,7 +1,9 @@
 package com.jcavi.cadastro.service;
 
 import com.jcavi.cadastro.dto.EnderecoDto;
+import com.jcavi.cadastro.dto.UsuarioDto;
 import com.jcavi.cadastro.entity.Endereco;
+import com.jcavi.cadastro.entity.Usuario;
 import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.repository.EnderecoRepository;
 import org.modelmapper.ModelMapper;
@@ -22,9 +24,10 @@ public class EnderecoService implements Mappable {
         this.mapper = mapper;
     }
 
-    public void salvar(List<EnderecoDto> enderecoDto) {
+    public void salvar(List<EnderecoDto> enderecoDto, UsuarioDto usuarioDto) {
         for (EnderecoDto e: enderecoDto) {
             Endereco endereco = map(e, Endereco.class);
+            endereco.setUsuario(map(usuarioDto, Usuario.class));
             enderecoRepository.save(endereco);
         }
     }
