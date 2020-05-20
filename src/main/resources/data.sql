@@ -22,7 +22,7 @@ insert into jcavi_produto_categoria(produto, categoria) values (3, 3)
 insert into jcavi_produto_categoria(produto, categoria) values (4, 4)
 insert into jcavi_produto_categoria(produto, categoria) values (4, 3)
 
-insert into jcavi_usuario(id, nome, email, senha, profissao, salario) values (1,'Frodo', 'frodo@legalizzr.com.br', '$2a$10$.71w9EoUqiRoGADku9sgquKaAB/8NnQN.IfPqgD15TZ0z3NN7tRS2', 'Personagem de ficção', '12000')
+insert into jcavi_usuario(id, nome, email, senha, profissao, salario) values (1,'Frodo', 'contato@legalizzr.com.br', '$2a$10$.71w9EoUqiRoGADku9sgquKaAB/8NnQN.IfPqgD15TZ0z3NN7tRS2', 'Personagem de ficção', '12000')
 insert into jcavi_usuario(id, nome, email, senha, profissao, salario) values (2,'Darth', 'darth@legalizzr.com.br', '$2a$10$.71w9EoUqiRoGADku9sgquKaAB/8NnQN.IfPqgD15TZ0z3NN7tRS2', 'Personagem de ficção', '12000')
 insert into jcavi_usuario(id, nome, email, senha, profissao, salario) values (3,'Hannibal', 'hannibal@legalizzr.com.br', '$2a$10$.71w9EoUqiRoGADku9sgquKaAB/8NnQN.IfPqgD15TZ0z3NN7tRS2', 'Personagem de ficção', '12000')
 insert into jcavi_usuario(id, nome, email, senha, profissao, salario) values (4,'Michael', 'michael@legalizzr.com.br', '$2a$10$.71w9EoUqiRoGADku9sgquKaAB/8NnQN.IfPqgD15TZ0z3NN7tRS2', 'Personagem de ficção', '12000')

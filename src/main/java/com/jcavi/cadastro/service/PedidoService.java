@@ -6,6 +6,7 @@ import com.jcavi.cadastro.entity.*;
 import com.jcavi.cadastro.entity.enums.EstadoPagamento;
 import com.jcavi.cadastro.mapper.Mappable;
 import com.jcavi.cadastro.repository.PedidoRepository;
+import com.jcavi.cadastro.service.email.EmailService;
 import com.jcavi.cadastro.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class PedidoService implements Mappable {
     private final PagamentoService pagamentoService;
     private final ProdutoService produtoService;
     private final ItemPedidoService itemPedidoService;
+    private final EmailService emailService;
 
     @Autowired
-    public PedidoService(PedidoRepository pedidoRepository, UsuarioService usuarioService, ModelMapper mapper, BoletoService boletoService, PagamentoService pagamentoService, ProdutoService produtoService, ItemPedidoService itemPedidoService) {
+    public PedidoService(PedidoRepository pedidoRepository, UsuarioService usuarioService, ModelMapper mapper, BoletoService boletoService, PagamentoService pagamentoService, ProdutoService produtoService, ItemPedidoService itemPedidoService, EmailService emailService) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioService = usuarioService;
         this.mapper = mapper;
@@ -35,6 +37,7 @@ public class PedidoService implements Mappable {
         this.pagamentoService = pagamentoService;
         this.produtoService = produtoService;
         this.itemPedidoService = itemPedidoService;
+        this.emailService = emailService;
     }
 
     public Pedido buscarPorId(Long id) {
@@ -63,6 +66,8 @@ public class PedidoService implements Mappable {
             item.setPedido(pedido);
         }
         itemPedidoService.salvarTodos(pedido.getItens());
+        System.out.println(pedido);
+        emailService.confirmacaoEmailPedido(pedido);
         return pedido;
     }
 

@@ -1,5 +1,7 @@
 package com.jcavi.cadastro;
 
+import com.jcavi.cadastro.service.email.EmailService;
+import com.jcavi.cadastro.service.email.SmtpEmailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +17,11 @@ public class CadastroDeProdutosApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
+	}
+
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
 
 }

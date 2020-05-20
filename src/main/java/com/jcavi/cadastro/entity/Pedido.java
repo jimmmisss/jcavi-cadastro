@@ -1,13 +1,18 @@
 package com.jcavi.cadastro.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -39,12 +44,33 @@ public class Pedido implements Serializable {
 
     public Double getValorTotal() {
         Double soma = 0.0;
-        for (ItemPedido ip: itens) {
+        for (ItemPedido ip : itens) {
             soma = soma + ip.getSubTotal();
         }
         return soma;
     }
 
+    @Override
+    public String toString() {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        StringBuilder builder = new StringBuilder();
+        builder.append("Pedido número: ");
+        builder.append(getId());
+        builder.append(", Instante: ");
+        builder.append(date.format(getInstante()));
+        builder.append(", Cliente: ");
+        builder.append(getUsuario().getNome());
+        builder.append(", Situção do pagamento: ");
+        builder.append(getPagamento().getEstado().getDescricao());
+        builder.append("\nDetalhes\n: ");
+        for (ItemPedido i : getItens()) {
+            builder.append(i.toString());
+        }
+        builder.append("Valor total da compra: ");
+        builder.append(nf.format(getValorTotal()));
+        return builder.toString();
+    }
 }
 
 
